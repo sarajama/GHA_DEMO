@@ -4,19 +4,21 @@
 name: Workflowone
 
 on:
-  workflow_dispatch:  
+  workflow_dispatch:
+  
   # push:\\\
   
 
 concurrency:
   group: ci_workflow_group
   cancel-in-progress: false
+  
 # concurrency: 
 #   group: ${{ github.head_ref ||  github.ref }}
 
 jobs:
   job1:
-    runs-on: self-hosted
+    runs-on: GitHub-hosted runners
     
     steps:
       - name: Step 1
@@ -25,7 +27,7 @@ jobs:
          sleep 10 
 
   job2:
-    runs-on: self-hosted
+    runs-on: GitHub-hosted runners
    # needs: job1
     steps:
       - name: Step 2
@@ -34,14 +36,14 @@ jobs:
          sleep 10
 
   job3:
-    runs-on: self-hosted
+    runs-on: GitHub-hosted runners
    # needs: job2
     steps:
       - name: Step 3
         run: echo "This is Workflow 1 - Job 3"
 
   job4:
-    runs-on: self-hosted
+    runs-on: GitHub-hosted runners
    # needs: job2
     steps:
       - name: Step 4
