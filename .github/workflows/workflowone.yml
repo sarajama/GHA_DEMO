@@ -15,7 +15,7 @@ jobs:
           echo "This is Workflow 1 - Job 1"
           sleep 10 
       - name: Step 2
-        needs: Step 1
+       
         run: |
           echo "This is Workflow 1 - Job 1"
 
