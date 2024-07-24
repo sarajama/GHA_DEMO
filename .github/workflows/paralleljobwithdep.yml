@@ -1,0 +1,50 @@
+name: paralleljobwithdep
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Job 1 Step 1
+        run: echo "Running Job 1 Step 1"
+      - name: Job 1 Step 2
+        run: echo "Running Job 1 Step 2"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1  # job2 depends on job1 completing
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Job 2 Step 1
+        run: echo "Running Job 2 Step 1"
+      - name: Job 2 Step 2
+        run: echo "Running Job 2 Step 2"
+
+  job3:
+    runs-on: ubuntu-latest
+    needs: job1  # job3 also depends on job1 completing
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Job 3 Step 1
+        run: echo "Running Job 3 Step 1"
+      - name: Job 3 Step 2
+        run: echo "Running Job 3 Step 2"
+
+  job4:
+    runs-on: ubuntu-latest
+    needs: [job2, job3]  # job4 depends on both job2 and job3 completing
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Job 4 Step 1
+        run: echo "Running Job 4 Step 1"
+      - name: Job 4 Step 2
+        run: echo "Running Job 4 Step 2"
