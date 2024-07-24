@@ -1,4 +1,6 @@
-name: Workflow 1
+## To check Parallel Jobs#############
+
+name: paralleljobrun   
 
 on:
   workflow_dispatch:  
@@ -10,33 +12,32 @@ concurrency:
 
 jobs:
   job1:
-    runs-on: self-hosted
+    runs-on: self-hosted 
     steps:
       - name: Step 1
         run: |
          echo "This is Workflow 1 - Job 1"
-         sleep 10 
+       #  sleep 10 
 
   job2:
     runs-on: self-hosted
-    needs: job1
+ #   needs: job1
     steps:
       - name: Step 2
         run: |
          echo "This is Workflow 1 - Job 2"
-         sleep 10
+     #    sleep 10
 
   job3:
     runs-on: self-hosted
-    needs: job2
-    steps:
+  #  needs: job2
+    steps:   
       - name: Step 3
         run: echo "This is Workflow 1 - Job 3"
 
   job4:
     runs-on: self-hosted
-    needs: job3
-    steps:
+  #  needs: job3
+    steps:     
       - name: Step 4
         run: echo "This is Workflow 1 - Job 4"
-        
